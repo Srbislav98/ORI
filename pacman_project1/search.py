@@ -87,17 +87,105 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    #raise util.raiseNotDefined()
+    struktura=util.Stack() #lifo za dfs
+    prosao=[]
+    rjesenje=[]
+    pocetak=problem.getStartState()
+    struktura.push((pocetak,rjesenje))
+    while struktura.isEmpty()==False:
+        #izaberi list za ekspanziju na osnovu strategije
+        trenutniKorak,trenutnoRj=struktura.pop()
+        # if da li je to rjesenje? ako jeste vrati ga
+        if problem.isGoalState(trenutniKorak):
+            return trenutnoRj
+        #else onda dodaj dijecu tj. moguce sl poteze sa tog polja u stablo pretrage
+        else:
+            djeca=problem.getSuccessors(trenutniKorak)
+            for dijete in djeca:
+                #dijete=stanje,akcija,cijena
+                # ali provjeri da li si vec bio na tom polju, ako jesi nemoj vise gledati
+                nasao=False
+                for korak in prosao:
+                    if dijete[0]==korak:
+                        nasao=True
+                        break
+                if nasao==False:
+                    prosao.append(dijete[0])
+                    dijeteRj=trenutnoRj+[dijete[1]]
+                    struktura.push((dijete[0],dijeteRj))
+
+    # ako nema kandidata za ekspanziju->failure, znaci vracamo praznu listu
+    return rjesenje
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    #raise util.raiseNotDefined()
+    struktura=util.Queue() #fifo za bfs
+    prosao=[]
+    rjesenje=[]
+    pocetak=problem.getStartState()
+    struktura.push((pocetak,rjesenje))
+    while struktura.isEmpty()==False:
+        #izaberi list za ekspanziju na osnovu strategije
+        trenutniKorak,trenutnoRj=struktura.pop()
+        # if da li je to rjesenje? ako jeste vrati ga
+        if problem.isGoalState(trenutniKorak):
+            return trenutnoRj
+        #else onda dodaj dijecu tj. moguce sl poteze sa tog polja u stablo pretrage
+        else:
+            djeca=problem.getSuccessors(trenutniKorak)
+            for dijete in djeca:
+                #dijete=stanje,akcija,cijena
+                # ali provjeri da li si vec bio na tom polju, ako jesi nemoj vise gledati
+                nasao=False
+                for korak in prosao:
+                    if dijete[0]==korak:
+                        nasao=True
+                        break
+                if nasao==False:
+                    prosao.append(dijete[0])
+                    dijeteRj=trenutnoRj+[dijete[1]]
+                    struktura.push((dijete[0],dijeteRj))
+
+    # ako nema kandidata za ekspanziju->failure, znaci vracamo praznu listu
+    return rjesenje
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    # raise util.raiseNotDefined()
+    struktura=util.PriorityQueue() #fifo sa prioritetom  za aStar
+    prosao=[]
+    rjesenje=[]
+    pocetak=problem.getStartState()
+    struktura.push((pocetak,rjesenje),0)
+    while struktura.isEmpty()==False:
+        #izaberi list za ekspanziju na osnovu strategije
+        trenutniKorak,trenutnoRj=struktura.pop()
+        # if da li je to rjesenje? ako jeste vrati ga
+        if problem.isGoalState(trenutniKorak):
+            return trenutnoRj
+        #else onda dodaj dijecu tj. moguce sl poteze sa tog polja u stablo pretrage
+        else:
+            djeca=problem.getSuccessors(trenutniKorak)
+            for dijete in djeca:
+                #dijete=stanje,akcija,cijena
+                # ali provjeri da li si vec bio na tom polju, ako jesi nemoj vise gledati
+                nasao=False
+                for korak in prosao:
+                    if dijete[0]==korak:
+                        nasao=True
+                        break
+                if nasao==False:
+                    prosao.append(dijete[0])
+                    dijeteRj=trenutnoRj+[dijete[1]]
+                    cijena = problem.getCostOfActions(dijeteRj)
+                    struktura.push((dijete[0],dijeteRj),cijena)
+
+    # ako nema kandidata za ekspanziju->failure, znaci vracamo praznu listu
+    return rjesenje
 
 def nullHeuristic(state, problem=None):
     """
@@ -109,7 +197,37 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    # raise util.raiseNotDefined()
+    struktura=util.PriorityQueue() #fifo sa prioritetom  za aStar
+    prosao=[]
+    rjesenje=[]
+    pocetak=problem.getStartState()
+    struktura.push((pocetak,rjesenje),heuristic(pocetak,problem))
+    while struktura.isEmpty()==False:
+        #izaberi list za ekspanziju na osnovu strategije
+        trenutniKorak,trenutnoRj=struktura.pop()
+        # if da li je to rjesenje? ako jeste vrati ga
+        if problem.isGoalState(trenutniKorak):
+            return trenutnoRj
+        #else onda dodaj dijecu tj. moguce sl poteze sa tog polja u stablo pretrage
+        else:
+            djeca=problem.getSuccessors(trenutniKorak)
+            for dijete in djeca:
+                #dijete=stanje,akcija,cijena
+                # ali provjeri da li si vec bio na tom polju, ako jesi nemoj vise gledati
+                nasao=False
+                for korak in prosao:
+                    if dijete[0]==korak:
+                        nasao=True
+                        break
+                if nasao==False:
+                    prosao.append(dijete[0])
+                    dijeteRj=trenutnoRj+[dijete[1]]
+                    cijena = problem.getCostOfActions(dijeteRj) + heuristic(dijete[0], problem)
+                    struktura.push((dijete[0],dijeteRj),cijena)
+
+    # ako nema kandidata za ekspanziju->failure, znaci vracamo praznu listu
+    return rjesenje
 
 
 # Abbreviations
