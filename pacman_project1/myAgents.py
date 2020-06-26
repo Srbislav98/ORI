@@ -23,13 +23,15 @@ IMPORTANT
 `agent` defines which agent you will use. By default, it is set to ClosestDotAgent,
 but when you're ready to test your own agent, replace it with MyAgent
 """
-def createAgents(num_pacmen, agent='ClosestDotAgent'):
+def createAgents(num_pacmen, agent='MyAgent'):
     return [eval(agent)(index=i) for i in range(num_pacmen)]
 
 class MyAgent(Agent):
     """
     Implementation of your agent.
     """
+    TrenutnoJedem={}
+    BrojAgenata=0
 
     def getAction(self, state):
         """
@@ -38,7 +40,26 @@ class MyAgent(Agent):
 
         "*** YOUR CODE HERE ***"
 
-        raise NotImplementedError()
+        #if self.stati==True:
+        #    return 'Stop'
+        food = state.getFood()
+        self.TrenutnoJedem=MyAgent.TrenutnoJedem[self.index]
+        if(len(self.slKoraci)==0) and self.TrenutnoJedem not in food.asList():
+            """
+            if ClosestDotAgent.BrojAgenata >len(food.asList()):
+                for f in food.asList():
+                    if f not in ClosestDotAgent.TrenutnoJedem.values():
+                        problem = AnyFoodSearchProblem(gameState, self.index)
+                        self.slKoraci = search.bfs(problem)
+                        slKorak = self.slKoraci.pop(0)
+                        return slKorak
+                self.stati = True
+                return 'Stop'
+            """
+            problem = MyFoodSearchProblem(state, self.index)
+            self.slKoraci = search.bfs(problem)
+        slKorak = self.slKoraci.pop(0)
+        return slKorak
 
     def initialize(self):
         """
@@ -48,8 +69,11 @@ class MyAgent(Agent):
         """
 
         "*** YOUR CODE HERE"
-
-        raise NotImplementedError()
+        self.slKoraci=[]
+        self.TrenutnoJedem=-1,-1
+        MyAgent.TrenutnoJedem[self.index] = (-9999, -9999)
+        MyAgent.TrenutnoJedem = dict.fromkeys(MyAgent.TrenutnoJedem, (-9999,-9999))
+        #self.stati=False
 
 """
 Put any other SearchProblems or search methods below. You may also import classes/methods in
@@ -69,9 +93,9 @@ class ClosestDotAgent(Agent):
         walls = gameState.getWalls()
         problem = AnyFoodSearchProblem(gameState, self.index)
 
-
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        #util.raiseNotDefined()
+        return search.bfs(problem)
 
     def getAction(self, state):
         return self.findPathToClosestDot(state)[0]
@@ -110,5 +134,65 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         x,y = state
 
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        #util.raiseNotDefined()
+        return self.food[x][y]
+class MyFoodSearchProblem(PositionSearchProblem):
+    """
+    A search problem for finding a path to any food.
 
+    This search problem is just like the PositionSearchProblem, but has a
+    different goal test, which you need to fill in below.  The state space and
+    successor function do not need to be changed.
+
+    The class definition above, AnyFoodSearchProblem(PositionSearchProblem),
+    inherits the methods of the PositionSearchProblem.
+
+    You can use this search problem to help you fill in the findPathToClosestDot
+    method.
+    """
+
+    def __init__(self, gameState, agentIndex):
+        "Stores information from the gameState.  You don't need to change this."
+        # Store the food for later reference
+        self.food = gameState.getFood()
+
+        # Store info for the PositionSearchProblem (no need to change this)
+        self.walls = gameState.getWalls()
+        self.startState = gameState.getPacmanPosition(agentIndex)
+        self.costFn = lambda x: 1
+        self._visited, self._visitedlist, self._expanded = {}, [], 0 # DO NOT CHANGE
+
+        self.agentIndex = agentIndex
+        self.brHrane = gameState.getNumFood()
+        self.BrojAgenata = gameState.getNumPacmanAgents()
+        #self.distanca={}
+        #for i in range(ClosestDotAgent.BrojAgenata):
+            #self.distanca[i]=util.manhattanDistance(gameState.getPacmanPosition(i),ClosestDotAgent.TrenutnoJedem[i])
+
+    def isGoalState(self, state):
+        """
+        The state is Pacman's position. Fill this in with a goal test that will
+        complete the problem definition.
+        """
+        x,y = state
+
+        "*** YOUR CODE HERE ***"
+        if self.food[x][y]:
+            if state not in MyAgent.TrenutnoJedem.values():
+                #for a in ClosestDotAgent.TrenutnoJedem:
+                #   if util.manhattanDistance(ClosestDotAgent.TrenutnoJedem[a],state)<2 and a!=self.agentIndex:
+                #        return False
+                #    pass
+                MyAgent.TrenutnoJedem[self.agentIndex] = state
+                return True
+            if self.brHrane<=self.BrojAgenata:
+                MyAgent.TrenutnoJedem[self.agentIndex] = state
+                return True
+            if util.manhattanDistance(state,self.startState)<3:
+                MyAgent.TrenutnoJedem[self.agentIndex]=state
+                return True
+        return False
+        #if self.food[x][y] and state in ClosestDotAgent.TrenutnoJedem.values():
+            #for i in list(ClosestDotAgent.TrenutnoJedem.keys())[list(ClosestDotAgent.TrenutnoJedem.values()).index(state)]:
+                #if util.manhattanDistance(state,self.startState)<self.distanca[i]:
+         #   return True
