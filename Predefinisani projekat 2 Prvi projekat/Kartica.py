@@ -18,3 +18,9 @@ class Kreditna_Kartica:
         self.MINIMUM_PAYMENTS=h
         self.PRCFULLPAYMENT=j
         self.TENURE=k
+        self.ULISTI = False
+
+    def To_String(self):
+        return self.CUSTID + "|"+str(self.BALANCE) + "|"+str(self.BALANCEFREQUENCY) + "|"+str(self.PURCHASES) + "|"+str(self.ONEOFFPURCHASES) + "|"+str(self.INSTALLMENTSPURCHASES) + "|"+str(self.CASHADVANCE) + "|" +str(self.PURCHASESFREQUENCY )+ "|"+str(self.ONEOFFPURCHASESFREQUENCY) + "|"+str(self.PURCHASESINSTALLMENTSFREQUENCY) + "|"+str(self.CASHADVANCEFREQUENCY) + "|"+str(self.CASHADVANCETRX) + "|"+str(self.PURCHASESTRX) + "|"+str(self.CREDITLIMIT) + "|"+str(self.PAYMENTS) + "|"+str(self.MINIMUM_PAYMENTS) + "|"+str(self.PRCFULLPAYMENT) + "|"+str(self.TENURE) + "\n"
+
+

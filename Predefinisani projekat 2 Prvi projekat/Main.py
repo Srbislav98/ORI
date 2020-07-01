@@ -1,7 +1,16 @@
+import copy
+
 import numpy as np
 import csv
 from Kartica import Kreditna_Kartica
 
+def slicno(broj, broj2, koliko):
+    temp = broj + koliko
+    temp2 = broj - koliko
+    if broj2<temp and broj2>temp2:
+        return True
+    else:
+        return False
 
 if __name__ == '__main__':
     kratko = open('credit_card_data.csv', encoding='utf-8')
@@ -60,8 +69,40 @@ if __name__ == '__main__':
                                                float(row[5]),float(row[6]),float(row[7]),float(row[8]),float(row[9]),
                                                float(row[10]),float(row[11]),float(row[12]),float(row[13]),float(row[14]),float(row[15]),
                                                float(row[16]),float(row[17])))
+    lista = listaSvega
+    temp = [[]]
+    k = -1
+    for i in lista:
+        if i.ULISTI:
+            continue
+        k += 1
+        temp.append([])
+        temp[k].append(i)
+        l = -1
+        for j in lista:
+            l+=1
+            if i.ULISTI:
+                continue
+            if i.CUSTID == j.CUSTID:
+                continue
+            if slicno(i.BALANCEFREQUENCY, j.BALANCEFREQUENCY, 0.1):
+                if slicno(i.PURCHASESFREQUENCY, j.PURCHASESFREQUENCY, 0.1):
+                    if slicno(i.ONEOFFPURCHASESFREQUENCY, j.ONEOFFPURCHASESFREQUENCY, 0.1):
+                        if slicno(i.PURCHASESINSTALLMENTSFREQUENCY, j.PURCHASESINSTALLMENTSFREQUENCY, 0.1):
+                            if slicno(i.CASHADVANCEFREQUENCY, j.CASHADVANCEFREQUENCY, 0.1):
+                                if slicno(i.CASHADVANCETRX, j.CASHADVANCETRX, 2):
+                                    if slicno(i.PURCHASESTRX, j.PURCHASESTRX, 3):
+                                        if slicno(i.CREDITLIMIT, j.CREDITLIMIT, 1000):
+                                            if slicno(i.MINIMUM_PAYMENTS, j.MINIMUM_PAYMENTS, 350):
+                                                if slicno(i.PRCFULLPAYMENT, j.PRCFULLPAYMENT, 0.1):
+                                                    if slicno(i.TENURE, j.TENURE, 1):
+                                                        temp[k].append(j)
+                                                        lista[l].ULISTI = True
 
-
-    
+    for i in temp:
+        print("Lista: \n")
+        for j in i:
+            print(j.To_String())
+        print("Kraj liste \n")
     max_value = np.max(listaBALANCE)
     print('Maximum value of the array is',max_value)
