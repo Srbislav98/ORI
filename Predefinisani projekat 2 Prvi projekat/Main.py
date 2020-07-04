@@ -74,7 +74,7 @@ if __name__ == '__main__':
     lista = listaSvega
     temp = [[]]
 
-    for i in range(6):
+    for i in range(8):
         k = -1
         if i == 0:
             print("Ova grupa kupuje skupe proizvode i ima veliki limit na kreditnim karticama:\n")
@@ -89,11 +89,12 @@ if __name__ == '__main__':
                     plt.scatter(j.PURCHASES, j.CREDITLIMIT)
                     #print(j.To_String())
                     lista[k].ULISTI = True
+            print("Veličina grupe: " + str(len(temp[0])) + "\n")
             plt.xlabel('Celokupna kupovina')
             plt.ylabel('Limit kredita')
             plt.show()
         elif i==1:
-            print("Grupa koje kupuje na rate, Koliko cesto to radi:\n")
+            print("Grupa koje kupuje na rate, koliko cesto to radi:\n")
             temp.append([])
             plt.figure("Korisnici koji često plaćanje preko rate")
             for j in lista:
@@ -105,7 +106,8 @@ if __name__ == '__main__':
                     plt.scatter(j.PURCHASESINSTALLMENTSFREQUENCY, j.INSTALLMENTSPURCHASES )
                     temp[1].append(j)
                     lista[k].ULISTI = True
-            plt.xlabel('Koliko često kupuje na rate')
+            print("Veličina grupe: " + str(len(temp[1])) + "\n")
+            plt.xlabel('Koliko često kupuje na rate, vrednost između 0 i 1 (1 = često, 0 = retko)')
             plt.ylabel('Koliko je platio na rate korisnik')
             plt.show()
         elif i==2:
@@ -121,7 +123,8 @@ if __name__ == '__main__':
                     plt.scatter(j.CASHADVANCEFREQUENCY, j.CASHADVANCE)
                     temp[2].append(j)
                     lista[k].ULISTI = True
-            plt.xlabel('Koliko često kupuje preko keša (cash advance)')
+            print("Veličina grupe: " + str(len(temp[2])) + "\n")
+            plt.xlabel('Koliko često kupuje preko keša (cash advance), vrednost između 0 i 1 (1 = često, 0 = retko)')
             plt.ylabel('Koliko je platio preko cash advance korisnik')
             plt.show()
         elif i==3:
@@ -137,10 +140,28 @@ if __name__ == '__main__':
                     plt.scatter(j.ONEOFFPURCHASESFREQUENCY, j.ONEOFFPURCHASES)
                     temp[3].append(j)
                     lista[k].ULISTI = True
-            plt.xlabel('Koliko često kupuje preko one-off purchase')
+            print("Veličina grupe: " + str(len(temp[3])) + "\n")
+            plt.xlabel('Koliko često kupuje preko one-off purchase, vrednost između 0 i 1 (1 = često, 0 = retko)')
             plt.ylabel('Koliko je platio preko one-off korisnik')
             plt.show()
-        elif i == 4:
+        elif i==4:
+            print("Grupa koja uplaćuje novac unapred kao i koliko je transakcija napravila:\n")
+            temp.append([])
+            plt.figure("Grupa koja uplaćuje novac unapred kao i koliko je transakcija napravila")
+            for j in lista:
+                k += 1
+                if j.ULISTI:
+                    continue
+                if j.CASHADVANCEFREQUENCY > 0:
+                    # print(j.To_String())
+                    plt.scatter(j.CASHADVANCEFREQUENCY, j.CASHADVANCETRX)
+                    temp[4].append(j)
+                    lista[k].ULISTI = True
+            print("Veličina grupe: " + str(len(temp[4])) + "\n")
+            plt.xlabel('Koliko se često uplaćuje novac unapred')
+            plt.ylabel('Broj transakcija sa uplaćenim novcem unapred')
+            plt.show()
+        elif i == 5:
             print("Grupa gde korisnik ima  procenat da uplati na kraticu i Koliko je uplatio:\n")
             temp.append([])
             plt.figure("Korisnik ima određen procenat da uplati na kraticu i Koliko je uplatio")
@@ -151,23 +172,49 @@ if __name__ == '__main__':
                 if j.PRCFULLPAYMENT>0:
                     #print(j.To_String())
                     plt.scatter(j.PRCFULLPAYMENT, j.PAYMENTS)
-                    temp[4].append(j)
+                    temp[i].append(j)
                     lista[k].ULISTI = True
+            print("Veličina grupe: " + str(len(temp[4])) + "\n")
             plt.xlabel('Procenat ukupnog iznosa koji korisnik treba da uplati na karticu')
             plt.ylabel('Koliko je uplatio na karticu')
             plt.show()
-        elif i == 5:
-            print("Ostalo:\n")
+
+        elif i == 6:
+            print("Grupa koja nema neko specijalno ponašanje, koliko se često menja njihov balans:\n")
             temp.append([])
+            plt.figure("Grupa koja nema neko specijalno ponašanje, koliko se često menja njihov balans")
+            for j in lista:
+                k+=1
+                if j.ULISTI:
+                    continue
+                if j.BALANCEFREQUENCY>0:
+                    #print(j.To_String())
+                    plt.scatter(j.BALANCEFREQUENCY, j.BALANCE)
+                    temp[i].append(j)
+                    lista[k].ULISTI = True
+            print("Veličina grupe: " + str(len(temp[4])) + "\n")
+            plt.xlabel('Koliko često se menja balans, vrednost između 0 i 1 (1 = često, 0 = retko)')
+            plt.ylabel('Stanje na računu dostupno za kupovinu')
+            plt.show()
+
+
+        elif i == 7:
+            print("Grupa koja nema baš ikakvu interakciju:\n")
+            temp.append([])
+            plt.figure("Grupa koja nema baš ikakvu interakciju")
             for j in lista:
                 k += 1
                 if j.ULISTI:
                     continue
-                temp[5].append(j)
+                temp[i].append(j)
+                plt.scatter(j.MINIMUM_PAYMENTS, j.TENURE)
                 #print(j.To_String())
                 lista[k].ULISTI = True
-    for i in temp:
-        print(str(len(i)) + "\n")
+            print("Veličina grupe: " + str(len(temp[i])) + "\n")
+            plt.xlabel('Minimalan iznos koji je korisnik uplatio na karticu')
+            plt.ylabel('Koliko još važe usluge kreditne kartice')
+            plt.show()
+
 
     """
     plt.figure()
