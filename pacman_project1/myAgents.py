@@ -31,7 +31,7 @@ class MyAgent(Agent):
     Implementation of your agent.
     """
     TrenutnoJedem={}
-    BrojAgenata=0
+    #BrojAgenata=0
 
     def getAction(self, state):
         """
@@ -40,22 +40,35 @@ class MyAgent(Agent):
 
         "*** YOUR CODE HERE ***"
 
-        #if self.stati==True:
-        #    return 'Stop'
+        if self.stati==True:
+            return 'Stop'
         food = state.getFood()
         self.TrenutnoJedem=MyAgent.TrenutnoJedem[self.index]
         if(len(self.slKoraci)==0) and self.TrenutnoJedem not in food.asList():
-            """
-            if ClosestDotAgent.BrojAgenata >len(food.asList()):
+
+            if state.getNumPacmanAgents()>len(food.asList()):
+                #print("A")
                 for f in food.asList():
-                    if f not in ClosestDotAgent.TrenutnoJedem.values():
-                        problem = AnyFoodSearchProblem(gameState, self.index)
+                    #print("d")
+                    if f not in MyAgent.TrenutnoJedem.values():
+                        #print("z")
+                        problem = MyFoodSearchProblem(state, self.index)
                         self.slKoraci = search.bfs(problem)
                         slKorak = self.slKoraci.pop(0)
                         return slKorak
+                    else:
+                        #print("1")
+                        lista=[util.manhattanDistance(state.getPacmanPosition(broj),f) for broj in range(state.getNumPacmanAgents())]
+                        #print("3")
+                        if util.manhattanDistance(state.getPacmanPosition(self.index),f)<=(min(lista)):
+                            #print("2")
+                            problem = MyFoodSearchProblem(state, self.index)
+                            self.slKoraci = search.bfs(problem)
+                            slKorak = self.slKoraci.pop(0)
+                            return slKorak
                 self.stati = True
                 return 'Stop'
-            """
+
             problem = MyFoodSearchProblem(state, self.index)
             self.slKoraci = search.bfs(problem)
         slKorak = self.slKoraci.pop(0)
@@ -73,7 +86,7 @@ class MyAgent(Agent):
         self.TrenutnoJedem=-1,-1
         MyAgent.TrenutnoJedem[self.index] = (-9999, -9999)
         MyAgent.TrenutnoJedem = dict.fromkeys(MyAgent.TrenutnoJedem, (-9999,-9999))
-        #self.stati=False
+        self.stati=False
 
 """
 Put any other SearchProblems or search methods below. You may also import classes/methods in
