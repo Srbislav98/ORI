@@ -56,6 +56,7 @@ class MyAgent(Agent):
                         self.slKoraci = search.bfs(problem)
                         slKorak = self.slKoraci.pop(0)
                         return slKorak
+                    """
                     else:
                         #print("1")
                         lista=[util.manhattanDistance(state.getPacmanPosition(broj),f) for broj in range(state.getNumPacmanAgents())]
@@ -66,6 +67,7 @@ class MyAgent(Agent):
                             self.slKoraci = search.bfs(problem)
                             slKorak = self.slKoraci.pop(0)
                             return slKorak
+                    """
                 self.stati = True
                 return 'Stop'
 
@@ -192,18 +194,16 @@ class MyFoodSearchProblem(PositionSearchProblem):
         "*** YOUR CODE HERE ***"
         if self.food[x][y]:
             if state not in MyAgent.TrenutnoJedem.values():
-                #for a in ClosestDotAgent.TrenutnoJedem:
-                #   if util.manhattanDistance(ClosestDotAgent.TrenutnoJedem[a],state)<2 and a!=self.agentIndex:
-                #        return False
-                #    pass
-                MyAgent.TrenutnoJedem[self.agentIndex] = state
-                return True
-            if self.brHrane<=self.BrojAgenata:
                 MyAgent.TrenutnoJedem[self.agentIndex] = state
                 return True
             if util.manhattanDistance(state,self.startState)<3:
                 MyAgent.TrenutnoJedem[self.agentIndex]=state
                 return True
+            """
+            elif self.brHrane<=self.BrojAgenata:
+                MyAgent.TrenutnoJedem[self.agentIndex] = state
+                return Tru
+            """
         return False
         #if self.food[x][y] and state in ClosestDotAgent.TrenutnoJedem.values():
             #for i in list(ClosestDotAgent.TrenutnoJedem.keys())[list(ClosestDotAgent.TrenutnoJedem.values()).index(state)]:

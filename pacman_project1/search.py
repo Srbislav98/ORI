@@ -89,7 +89,7 @@ def depthFirstSearch(problem):
     "*** YOUR CODE HERE ***"
     #raise util.raiseNotDefined()
     struktura=util.Stack() #lifo za dfs
-    prosao=[]
+    prosao=set()
     rjesenje=[]
     pocetak=problem.getStartState()
     struktura.push((pocetak,rjesenje))
@@ -111,7 +111,7 @@ def depthFirstSearch(problem):
                         nasao=True
                         break
                 if nasao==False:
-                    prosao.append(dijete[0])
+                    prosao.add(dijete[0])
                     dijeteRj=trenutnoRj+[dijete[1]]
                     struktura.push((dijete[0],dijeteRj))
 
@@ -123,7 +123,7 @@ def breadthFirstSearch(problem):
     "*** YOUR CODE HERE ***"
     #raise util.raiseNotDefined()
     struktura=util.Queue() #fifo za bfs
-    prosao=[]
+    prosao=set()
     rjesenje=[]
     pocetak=problem.getStartState()
     struktura.push((pocetak,rjesenje))
@@ -137,15 +137,8 @@ def breadthFirstSearch(problem):
         else:
             djeca=problem.getSuccessors(trenutniKorak)
             for dijete in djeca:
-                #dijete=stanje,akcija,cijena
-                # ali provjeri da li si vec bio na tom polju, ako jesi nemoj vise gledati
-                nasao=False
-                for korak in prosao:
-                    if dijete[0]==korak:
-                        nasao=True
-                        break
-                if nasao==False:
-                    prosao.append(dijete[0])
+                if dijete[0] not in prosao:
+                    prosao.add(dijete[0])
                     dijeteRj=trenutnoRj+[dijete[1]]
                     struktura.push((dijete[0],dijeteRj))
 
@@ -157,7 +150,7 @@ def uniformCostSearch(problem):
     "*** YOUR CODE HERE ***"
     # raise util.raiseNotDefined()
     struktura=util.PriorityQueue() #fifo sa prioritetom  za aStar
-    prosao=[]
+    prosao=set()
     rjesenje=[]
     pocetak=problem.getStartState()
     struktura.push((pocetak,rjesenje),0)
@@ -179,7 +172,7 @@ def uniformCostSearch(problem):
                         nasao=True
                         break
                 if nasao==False:
-                    prosao.append(dijete[0])
+                    prosao.add(dijete[0])
                     dijeteRj=trenutnoRj+[dijete[1]]
                     cijena = problem.getCostOfActions(dijeteRj)
                     struktura.push((dijete[0],dijeteRj),cijena)
@@ -199,7 +192,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     "*** YOUR CODE HERE ***"
     # raise util.raiseNotDefined()
     struktura=util.PriorityQueue() #fifo sa prioritetom  za aStar
-    prosao=[]
+    prosao=set()
     rjesenje=[]
     pocetak=problem.getStartState()
     struktura.push((pocetak,rjesenje),heuristic(pocetak,problem))
@@ -221,7 +214,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
                         nasao=True
                         break
                 if nasao==False:
-                    prosao.append(dijete[0])
+                    prosao.add(dijete[0])
                     dijeteRj=trenutnoRj+[dijete[1]]
                     cijena = problem.getCostOfActions(dijeteRj) + heuristic(dijete[0], problem)
                     struktura.push((dijete[0],dijeteRj),cijena)
