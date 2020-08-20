@@ -1,4 +1,5 @@
 # Pokretanje programa
+Naredne operacije izvršiti u powershell-u.<br />
 Pokrenuti virtualni interpreter:<br />
 *venv\Scripts\activate.ps1*<br />
 Udji u folder src i pokrenuti program:<br />
