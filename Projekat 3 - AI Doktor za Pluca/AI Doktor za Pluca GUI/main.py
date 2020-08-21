@@ -14,7 +14,7 @@ if __name__ == '__main__':
     def ai_odg(IMG_LOCATION):
         KATEGORIJE = ['ZDRAV', 'VIRUS', 'BAKTERIJA', 'STREPTOCOCCUS', 'COVID-19', 'ARDS', 'SARS']
         IMG_SIZE = 400
-        model = tf.keras.models.load_model('saved_model\\99')
+        model = tf.keras.models.load_model('saved_model\\0-dense---32-nodes---1-conv---accuracy-95_08')
             # kod za ucitavanje modela koji se nalazi u folderu saved_model koji sadrzi folder 0-dense---32-nodes---1-conv---accuracy-95_08
         test_slika = cv2.imread(IMG_LOCATION, cv2.IMREAD_GRAYSCALE)
         test_slika = cv2.resize(test_slika, dsize=(IMG_SIZE, IMG_SIZE), interpolation=cv2.INTER_CUBIC)
