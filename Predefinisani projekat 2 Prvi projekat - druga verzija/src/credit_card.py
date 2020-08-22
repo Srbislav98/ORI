@@ -2,6 +2,8 @@ from __future__ import print_function
 from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
+from kmeans import KMeans as KMeans2
+from sklearn.decomposition import PCA
 import pandas as pd
 
 
@@ -29,6 +31,7 @@ podaci['PRC_FULL_PAYMENT'].fillna(podaci['PRC_FULL_PAYMENT'].median(), inplace=T
 podaci['TENURE'].fillna(podaci['TENURE'].median(), inplace=True)
 
 # --- ODREDJIVANJE OPTIMALNOG K --- #
+"""
 plt.figure()
 sum_squared_errors = []
 for n_clusters in range(1, 10):
@@ -41,13 +44,50 @@ plt.plot(range(1,10),sum_squared_errors)
 plt.xlabel('# of clusters')
 plt.ylabel('SSE')
 plt.show()
+"""
+pca = PCA(n_components=2)
+#Vazno
+transformisaniPodaci = pca.fit_transform(podaci)
+plt.figure()
+sum_squared_errors = []
+for n_clusters in range(1, 10):
+    kmeans2 = KMeans2(n_clusters=n_clusters, max_iter=100)
+    kmeans2.fit(transformisaniPodaci)
+    sse = kmeans2.sum_squared_error()
+    sum_squared_errors.append(sse)
+
+plt.plot(range(1,10), sum_squared_errors)
+plt.xlabel('# of clusters')
+plt.ylabel('SSE')
+plt.show()
 
 # --- INICIJALIZACIJA I PRIMENA K-MEANS ALGORITMA --- #
 #brojKlastera = eval(raw_input('Unesite broj klastera:'))
 brojKlastera=3
 kmeans = KMeans(n_clusters=brojKlastera)
 rez=kmeans.fit_predict(podaci)
-podaci=pd.DataFrame(podaci)
+pca = PCA(n_components=2)
+#Vazno
+transformisaniPodaci = pca.fit_transform(podaci)
+#---
+skaliraniPodaci = pd.DataFrame(data=transformisaniPodaci, columns=['x_axis', 'y_axis'])
+
+kmeans2 = KMeans2(n_clusters=brojKlastera, max_iter=100)
+kmeans2.fit(transformisaniPodaci, normalize=True)
+colors = {0: 'red', 1: 'green', 2:'blue'}
+markeri = {0: '*', 1:'+',2: 'X' }
+plt.figure()
+for idx, cluster in enumerate(kmeans2.clusters):
+
+    plt.scatter(cluster.center[0], cluster.center[1], c='black', marker=markeri[idx], s=200)  # iscrtavanje centara
+    for tacka in cluster.data:  # iscrtavanje tacaka
+        plt.scatter(tacka[0], tacka[1], c=colors[idx])
+
+plt.xlabel('X osa')
+plt.ylabel('Y osa')
+
+plt.show()
+
 podaci['KLASTER']=rez
 
 print("UKUPNI PODACI-sr. vrednosti")
@@ -68,3 +108,4 @@ print(klaster2.mean(axis=0))
 klaster3=podaci.loc[podaci['KLASTER']==2]
 print("KLASTER 3")
 print(klaster3.mean(axis=0))
+
