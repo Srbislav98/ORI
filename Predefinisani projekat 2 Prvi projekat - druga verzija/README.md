@@ -18,7 +18,7 @@ Imaju dosta novca na racunu, normalno kupuju, isto i na rate i odjednom,stedljiv
 Imaju najvise novca na racunu, cesto kupuju u velikim iznosima, isto i na rate i odjednom<br/>
 
 Eksplorativna analiza podataka:<br/>
-##Ukupni podaci:
+## Ukupni podaci:
 <table>
   <tr>
     <th>TIP</th>
@@ -59,6 +59,46 @@ Eksplorativna analiza podataka:<br/>
                      <th>844.906767</th>
                    <th>    0.153715</th>
     <th>         11.517318</th>
+  </tr>
+  <tr>
+    <th>Minimalna vrednost</th>
+<th>                          0.000000</th>
+    <th>               0.000000</th>
+        <th>                   0.000000</th>
+            <th>       0.000000</th>
+      <th>       0.000000</th>
+          <th>            0.000000</th>
+              <th>   0.000000</th>
+   <th>       0.000000</th>
+   <th> 0.000000</th>
+       <th>        0.000000</th>
+           <th>         0.000000</th>
+               <th>        0.000000</th>
+                   <th>     50.000000</th>
+                       <th>     0.000000</th>
+   <th>                0.019163</th>
+       <th>             0.000000</th>
+           <th>                  6.000000</th>
+  </tr>
+  <tr>
+    <th>Maksimalna vrednost</th>
+  <th>                      19043.13856
+      <th>               1.00000
+          <th>             49039.57000
+              <th>    40761.25000
+<th>            22500.00000
+    <th>              47137.21176
+        <th>            1.00000
+            <th>  1.00000
+ <th>   1.00000
+     <th>           1.50000
+         <th>            123.00000
+             <th>         358.00000
+                 <th>      30000.00000
+                     <th>      50721.48336
+        <th>           76406.20752
+            <th>           1.00000
+                <th>                12.00000
   </tr>
   
   
