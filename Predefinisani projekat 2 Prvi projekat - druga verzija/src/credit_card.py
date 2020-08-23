@@ -78,10 +78,9 @@ colors = {0: 'red', 1: 'green', 2:'blue'}
 markeri = {0: '*', 1:'+',2: 'X' }
 plt.figure()
 for idx, cluster in enumerate(kmeans2.clusters):
-
-    plt.scatter(cluster.center[0], cluster.center[1], c='black', marker=markeri[idx], s=200)  # iscrtavanje centara
     for tacka in cluster.data:  # iscrtavanje tacaka
         plt.scatter(tacka[0], tacka[1], c=colors[idx])
+    plt.scatter(cluster.center[0], cluster.center[1], c='black', marker=markeri[idx], s=200)  # iscrtavanje centara
 
 plt.xlabel('X osa')
 plt.ylabel('Y osa')
@@ -89,23 +88,26 @@ plt.ylabel('Y osa')
 plt.show()
 
 podaci['KLASTER']=rez
-
+print("---------------------------------------------------------------------------------")
 print("UKUPNI PODACI-sr. vrednosti")
 print(podaci.mean(axis=0))
+print("---------------------------------------------------------------------------------")
 print("UKUPNI PODACI-min vrednosti")
 print(podaci.min(axis=0))
+print("---------------------------------------------------------------------------------")
 print("UKUPNI PODACI-max vrednosti")
 print(podaci.max(axis=0))
+print("---------------------------------------------------------------------------------")
 
 klaster1=podaci.loc[podaci['KLASTER']==0]
 print("KLASTER 1")
 print(klaster1.mean(axis=0))
-
+print("---------------------------------------------------------------------------------")
 klaster2=podaci.loc[podaci['KLASTER']==1]
 print("KLASTER 2")
 print(klaster2.mean(axis=0))
-
+print("---------------------------------------------------------------------------------")
 klaster3=podaci.loc[podaci['KLASTER']==2]
 print("KLASTER 3")
 print(klaster3.mean(axis=0))
-
+print("---------------------------------------------------------------------------------")
