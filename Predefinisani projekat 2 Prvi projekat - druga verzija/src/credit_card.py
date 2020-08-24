@@ -50,6 +50,7 @@ pca = PCA(n_components=2)
 transformisaniPodaci = pca.fit_transform(podaci)
 plt.figure()
 sum_squared_errors = []
+print("Iscrtavanje metode lakta (obicno traje 2 min) ...")
 for n_clusters in range(1, 10):
     kmeans2 = KMeans2(n_clusters=n_clusters, max_iter=100)
     kmeans2.fit(transformisaniPodaci)
@@ -60,6 +61,7 @@ plt.plot(range(1,10), sum_squared_errors)
 plt.xlabel('# of clusters')
 plt.ylabel('SSE')
 plt.show()
+print("Uspesno iscrtana metoda lakta!")
 
 # --- INICIJALIZACIJA I PRIMENA K-MEANS ALGORITMA --- #
 #brojKlastera = eval(raw_input('Unesite broj klastera:'))
@@ -71,7 +73,7 @@ pca = PCA(n_components=2)
 transformisaniPodaci = pca.fit_transform(podaci)
 #---
 skaliraniPodaci = pd.DataFrame(data=transformisaniPodaci, columns=['x_axis', 'y_axis'])
-
+print("Iscrtavanje klastera (obicno traje 6 min) ...")
 kmeans2 = KMeans2(n_clusters=brojKlastera, max_iter=100)
 kmeans2.fit(transformisaniPodaci, normalize=True)
 colors = {0: 'red', 1: 'green', 2:'blue'}
@@ -86,6 +88,7 @@ plt.xlabel('X osa')
 plt.ylabel('Y osa')
 
 plt.show()
+print("Uspesno iscrtani klasteri!")
 
 podaci['KLASTER']=rez
 print("---------------------------------------------------------------------------------")
@@ -100,14 +103,14 @@ print(podaci.max(axis=0))
 print("---------------------------------------------------------------------------------")
 
 klaster1=podaci.loc[podaci['KLASTER']==0]
-print("KLASTER 1")
+print("KLASTER 1 - Studenti")
 print(klaster1.mean(axis=0))
 print("---------------------------------------------------------------------------------")
 klaster2=podaci.loc[podaci['KLASTER']==1]
-print("KLASTER 2")
+print("KLASTER 2 - Radna klasa")
 print(klaster2.mean(axis=0))
 print("---------------------------------------------------------------------------------")
 klaster3=podaci.loc[podaci['KLASTER']==2]
-print("KLASTER 3")
+print("KLASTER 3 - Sopingholicari")
 print(klaster3.mean(axis=0))
 print("---------------------------------------------------------------------------------")
