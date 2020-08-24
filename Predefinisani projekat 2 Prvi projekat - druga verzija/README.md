@@ -9,6 +9,7 @@ U ovom projektu korišćen je K-means algoritam kako bi se grupisali korisnici k
 Za određivanje optimalnog broja klastera korišćena je metoda lakta.<br />
 Prilikom grupisanja korisnika, izostavili smo CUSTID pošto je identifikacija korisnica i ne znači nam ništa.<br />
 ![Capture](https://user-images.githubusercontent.com/51791214/90976098-917d6700-e53a-11ea-9a7e-1a11822e98dd.PNG)<br />
+(Ponekad se dobije malo drugaciji izgled ali vecinom slucaja budu sa 3 klastera)<br/>
 Odredili smo da postoje tri grupe tj. tri klastera i oni su:<br />
 ### Klaster 1-Studenti
 Nemaju puno novca na racunu, normalno kupuju, duplo vise na rate nego odjednom,veoma rijetko uplacuju unaprijed<br/>
