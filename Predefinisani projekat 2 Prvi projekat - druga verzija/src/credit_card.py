@@ -8,6 +8,7 @@ import pandas as pd
 
 
 # --- UCITAVANJE I PRIKAZ IRIS DATA SETA --- #
+print("Učitavanje podataka ...")
 podaci= pd.read_csv('../data/credit_card_data.csv')
 #id je nebitan a i sadrzi tekst
 podaci.drop('CUST_ID', axis=1,inplace=True)
@@ -29,7 +30,7 @@ podaci['PAYMENTS'].fillna(podaci['PAYMENTS'].median(), inplace=True)
 podaci['MINIMUM_PAYMENTS'].fillna(podaci['MINIMUM_PAYMENTS'].median(), inplace=True)
 podaci['PRC_FULL_PAYMENT'].fillna(podaci['PRC_FULL_PAYMENT'].median(), inplace=True)
 podaci['TENURE'].fillna(podaci['TENURE'].median(), inplace=True)
-
+print("Uspešno učitano!")
 # --- ODREDJIVANJE OPTIMALNOG K --- #
 """
 plt.figure()
@@ -45,12 +46,15 @@ plt.xlabel('# of clusters')
 plt.ylabel('SSE')
 plt.show()
 """
+print("Konvertovanje više dimenzionalnih podataka u dvodimenzionalne ...")
 pca = PCA(n_components=2)
 #Vazno
 transformisaniPodaci = pca.fit_transform(podaci)
+print("Uspešno konvertovano!")
+
 plt.figure()
 sum_squared_errors = []
-print("Iscrtavanje metode lakta (obicno traje 2 min) ...")
+print("Iscrtavanje metode lakta (obično traje 2 min) ...")
 for n_clusters in range(1, 10):
     kmeans2 = KMeans2(n_clusters=n_clusters, max_iter=100)
     kmeans2.fit(transformisaniPodaci)
@@ -61,35 +65,11 @@ plt.plot(range(1,10), sum_squared_errors)
 plt.xlabel('# of clusters')
 plt.ylabel('SSE')
 plt.show()
-print("Uspesno iscrtana metoda lakta!")
+print("Uspešno iscrtana metoda lakta!")
 
-# --- INICIJALIZACIJA I PRIMENA K-MEANS ALGORITMA --- #
-#brojKlastera = eval(raw_input('Unesite broj klastera:'))
 brojKlastera=3
 kmeans = KMeans(n_clusters=brojKlastera)
 rez=kmeans.fit_predict(podaci)
-pca = PCA(n_components=2)
-#Vazno
-transformisaniPodaci = pca.fit_transform(podaci)
-#---
-skaliraniPodaci = pd.DataFrame(data=transformisaniPodaci, columns=['x_axis', 'y_axis'])
-print("Iscrtavanje klastera (obicno traje 6 min) ...")
-kmeans2 = KMeans2(n_clusters=brojKlastera, max_iter=100)
-kmeans2.fit(transformisaniPodaci, normalize=True)
-colors = {0: 'red', 1: 'green', 2:'blue'}
-markeri = {0: '*', 1:'+',2: 'X' }
-plt.figure()
-for idx, cluster in enumerate(kmeans2.clusters):
-    for tacka in cluster.data:  # iscrtavanje tacaka
-        plt.scatter(tacka[0], tacka[1], c=colors[idx])
-    plt.scatter(cluster.center[0], cluster.center[1], c='black', marker=markeri[idx], s=200)  # iscrtavanje centara
-
-plt.xlabel('X osa')
-plt.ylabel('Y osa')
-
-plt.show()
-print("Uspesno iscrtani klasteri!")
-
 podaci['KLASTER']=rez
 print("---------------------------------------------------------------------------------")
 print("UKUPNI PODACI-sr. vrednosti")
@@ -114,3 +94,30 @@ klaster3=podaci.loc[podaci['KLASTER']==2]
 print("KLASTER 3 - Sopingholicari")
 print(klaster3.mean(axis=0))
 print("---------------------------------------------------------------------------------")
+
+# --- INICIJALIZACIJA I PRIMENA K-MEANS ALGORITMA --- #
+#brojKlastera = eval(raw_input('Unesite broj klastera:'))
+
+pca = PCA(n_components=2)
+#Vazno
+transformisaniPodaci = pca.fit_transform(podaci)
+#---
+#skaliraniPodaci = pd.DataFrame(data=transformisaniPodaci, columns=['x_axis', 'y_axis'])
+print("Iscrtavanje klastera (obično traje 6 min) ...")
+kmeans2 = KMeans2(n_clusters=brojKlastera, max_iter=100)
+kmeans2.fit(transformisaniPodaci, normalize=True)
+colors = {0: 'red', 1: 'green', 2:'blue'}
+markeri = {0: '*', 1:'+',2: 'X' }
+plt.figure()
+for idx, cluster in enumerate(kmeans2.clusters):
+    for tacka in cluster.data:  # iscrtavanje tacaka
+        plt.scatter(tacka[0], tacka[1], c=colors[idx])
+    plt.scatter(cluster.center[0], cluster.center[1], c='black', marker=markeri[idx], s=200)  # iscrtavanje centara
+
+plt.xlabel('X osa')
+plt.ylabel('Y osa')
+
+plt.show()
+print("Uspešno iscrtani klasteri!")
+
+
