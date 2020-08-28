@@ -4,14 +4,16 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from kmeans import KMeans as KMeans2
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 import pandas as pd
+from copy import deepcopy
 
 
 # --- UCITAVANJE I PRIKAZ IRIS DATA SETA --- #
 print("Učitavanje podataka ...")
 podaci= pd.read_csv('../data/credit_card_data.csv')
 #id je nebitan a i sadrzi tekst
-podaci.drop('CUST_ID', axis=1,inplace=True)
+
 # neke vrijednosti ne postoje pa su dodate median vrijednosti tih podataka na tu vrijednost
 podaci['BALANCE'].fillna(podaci['BALANCE'].median(), inplace=True)
 podaci['BALANCE_FREQUENCY'].fillna(podaci['BALANCE_FREQUENCY'].median(), inplace=True)
@@ -30,6 +32,11 @@ podaci['PAYMENTS'].fillna(podaci['PAYMENTS'].median(), inplace=True)
 podaci['MINIMUM_PAYMENTS'].fillna(podaci['MINIMUM_PAYMENTS'].median(), inplace=True)
 podaci['PRC_FULL_PAYMENT'].fillna(podaci['PRC_FULL_PAYMENT'].median(), inplace=True)
 podaci['TENURE'].fillna(podaci['TENURE'].median(), inplace=True)
+
+copyPodaci = deepcopy(podaci)
+copyPodaci.drop(columns=['CUST_ID', 'PURCHASES', 'PURCHASES_FREQUENCY', 'CASH_ADVANCE_FREQUENCY', 'PURCHASES_TRX',
+                 'MINIMUM_PAYMENTS', 'PRC_FULL_PAYMENT', 'TENURE', 'BALANCE_FREQUENCY'],inplace=True)
+podaci.drop('CUST_ID', axis=1,inplace=True)
 print("Uspešno učitano!")
 # --- ODREDJIVANJE OPTIMALNOG K --- #
 """
@@ -47,9 +54,10 @@ plt.ylabel('SSE')
 plt.show()
 """
 print("Konvertovanje više dimenzionalnih podataka u dvodimenzionalne ...")
+#copyPodaci = StandardScaler().fit_transform(copyPodaci)
 pca = PCA(n_components=2)
 #Vazno
-transformisaniPodaci = pca.fit_transform(podaci)
+transformisaniPodaci = pca.fit_transform(copyPodaci)
 print("Uspešno konvertovano!")
 
 plt.figure()
@@ -100,7 +108,7 @@ print("-------------------------------------------------------------------------
 
 pca = PCA(n_components=2)
 #Vazno
-transformisaniPodaci = pca.fit_transform(podaci)
+transformisaniPodaci = pca.fit_transform(copyPodaci)
 #---
 #skaliraniPodaci = pd.DataFrame(data=transformisaniPodaci, columns=['x_axis', 'y_axis'])
 print("Iscrtavanje klastera (obično traje 6 min) ...")
