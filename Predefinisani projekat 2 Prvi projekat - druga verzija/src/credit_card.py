@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from kmeans import KMeans as KMeans2
 from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
 import pandas as pd
 from copy import deepcopy
 
@@ -33,11 +32,14 @@ podaci['MINIMUM_PAYMENTS'].fillna(podaci['MINIMUM_PAYMENTS'].median(), inplace=T
 podaci['PRC_FULL_PAYMENT'].fillna(podaci['PRC_FULL_PAYMENT'].median(), inplace=True)
 podaci['TENURE'].fillna(podaci['TENURE'].median(), inplace=True)
 
-copyPodaci = deepcopy(podaci)
+copyPodaci = podaci
 copyPodaci.drop(columns=['CUST_ID', 'PURCHASES', 'PURCHASES_FREQUENCY', 'CASH_ADVANCE_FREQUENCY', 'PURCHASES_TRX',
                  'MINIMUM_PAYMENTS', 'PRC_FULL_PAYMENT', 'TENURE', 'BALANCE_FREQUENCY'],inplace=True)
-podaci.drop('CUST_ID', axis=1,inplace=True)
+#podaci.drop(columns=['CUST_ID', 'PURCHASES', 'PURCHASES_FREQUENCY', 'CASH_ADVANCE_FREQUENCY', 'PURCHASES_TRX',
+ #                'MINIMUM_PAYMENTS', 'PRC_FULL_PAYMENT', 'TENURE', 'BALANCE_FREQUENCY'],inplace=True)
+#podaci.drop('CUST_ID', axis=1,inplace=True)
 print("Uspešno učitano!")
+
 # --- ODREDJIVANJE OPTIMALNOG K --- #
 """
 plt.figure()
@@ -89,19 +91,46 @@ print("-------------------------------------------------------------------------
 print("UKUPNI PODACI-max vrednosti")
 print(podaci.max(axis=0))
 print("---------------------------------------------------------------------------------")
+podaci.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
+                 'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
+plt.show()
 
 klaster1=podaci.loc[podaci['KLASTER']==0]
 print("KLASTER 1 - Studenti")
+print("Srednja vrednost")
 print(klaster1.mean(axis=0))
+print("Minimum klastera")
+print(klaster1.min(axis=0))
+print("Maksmimum klastera")
+print(klaster1.max(axis=0))
 print("---------------------------------------------------------------------------------")
+klaster1.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
+                 'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
+plt.show()
 klaster2=podaci.loc[podaci['KLASTER']==1]
 print("KLASTER 2 - Radna klasa")
+print("Srednja vrednost")
 print(klaster2.mean(axis=0))
+print("Minimum klastera")
+print(klaster2.min(axis=0))
+print("Maksmimum klastera")
+print(klaster2.max(axis=0))
 print("---------------------------------------------------------------------------------")
+klaster2.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
+                 'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
+plt.show()
 klaster3=podaci.loc[podaci['KLASTER']==2]
 print("KLASTER 3 - Sopingholicari")
+print("Srednja vrednost")
 print(klaster3.mean(axis=0))
+print("Minimum klastera")
+print(klaster3.min(axis=0))
+print("Maksmimum klastera")
+print(klaster3.max(axis=0))
 print("---------------------------------------------------------------------------------")
+klaster3.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
+                 'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
+plt.show()
 
 # --- INICIJALIZACIJA I PRIMENA K-MEANS ALGORITMA --- #
 #brojKlastera = eval(raw_input('Unesite broj klastera:'))
@@ -126,6 +155,4 @@ plt.xlabel('X osa')
 plt.ylabel('Y osa')
 
 plt.show()
-print("Uspešno iscrtani klasteri!")
-
 
