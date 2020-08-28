@@ -7,9 +7,10 @@ Udji u folder src i pokrenuti program:<br />
 # Objašnjenje kako smo uradili
 U ovom projektu korišćen je K-means algoritam kako bi se grupisali korisnici koji imaju slično ponašanje.<br />
 Za određivanje optimalnog broja klastera korišćena je metoda lakta.<br />
-Prilikom grupisanja korisnika, izostavili smo CUSTID pošto je identifikacija korisnica i ne znači nam ništa.<br />
+#### Odbacili smo atribute:
+PURCHASE i PURCHASE FREQUENCY pošto imamo posebne načine kupovine, MINIMUM_PAYMENTS pošto ne kontribuira ništa, izostavili smo CUSTID pošto je identifikacija korisnica i ne znači nam ništa i još 5 atributa koji međusobno imaju slične vrednosti pa su uklonjeni.<br />
 ![Capture](https://user-images.githubusercontent.com/51791214/90976098-917d6700-e53a-11ea-9a7e-1a11822e98dd.PNG)<br />
-(Ponekad se dobije malo drugaciji izgled ali vecinom slucaja budu sa 3 klastera)<br/>
+(Ponekad se dobije malo drugaciji izgled ali vecinom slucaja budu sa 3 klastera)<br/> 
 Odredili smo da postoje tri grupe tj. tri klastera i oni su:<br />
 ### Klaster 1-Studenti
 Nemaju puno novca na racunu, normalno kupuju, duplo vise na rate nego odjednom,veoma rijetko uplacuju unaprijed<br/>
