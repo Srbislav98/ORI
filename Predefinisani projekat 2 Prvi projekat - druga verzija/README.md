@@ -105,6 +105,15 @@ Imaju dosta novca na racunu, normalno kupuju, isto i na rate i odjednom,stedljiv
   </tr>
    <tr>
 <th>Maksimum</th>
+     <th> 18495.55855</th>
+                 <th>  14215.00000</th>
+             <th> 10009.93000</th>
+                     <th>   14827.30716</th>
+           <th>  1.00000</th>
+    <th>   1.00000</th>
+              <th>        123.00000</th>
+               <th>       30000.00000</th>
+                 <th>          12353.26546</th>
   </tr>
  </table>
 ### Klaster 3-Sopingholicari
@@ -124,14 +133,40 @@ Imaju najvise novca na racunu, cesto kupuju u velikim iznosima, isto i na rate i
   </tr>
    <tr>
    <th>Srednja vrednost</th>
-     
+    <th> 4909.721780</th>
+                  <th>   5418.687803</th>
+            <th>   2240.561618</th>
+               <th>        6753.332289</th>
+           <th>   0.441015</th>
+     <th>  0.477293</th>
+                 <th>     12.687861</th>
+               <th>         11872.832370</th>
+                <th>           16646.791715</th>
   </tr>
    <tr>
   <th>Minimum</th>
-     
+   <th>     4.382924</th>
+                    <th>      0.000000</th>
+             <th>      0.000000</th>
+                <th>              0.000000</th>
+           <th>    0.000000</th>
+      <th>    0.000000</th>
+            <th>              0.000000</th>
+         <th>                 1200.000000</th>
+            <th>                  7116.531862</th>
+
   </tr>
    <tr>
 <th>Maksimum</th>
+ <th>  19043.13856</th>
+     <th>               40761.25000</th>
+    <th>           22500.00000</th>
+             <th>            47137.21176</th>
+          <th>  1.00000</th>
+  <th>     1.00000</th>
+               <th>        123.00000</th>
+              <th>           30000.00000</th>
+               <th>              50721.48336</th>
   </tr>
  </table>
 ## Ukupni podaci:
