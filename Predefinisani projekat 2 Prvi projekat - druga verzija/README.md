@@ -64,8 +64,11 @@ Nemaju puno novca na racunu, normalno kupuju, duplo vise na rate nego odjednom,v
                           <th>14229.882480</th>
   </tr>
  </table>
+ 
 ### Klaster 2-Radna klasa
 Imaju dosta novca na racunu, normalno kupuju, isto i na rate i odjednom,stedljivi<br/>
+
+
 <table>
   <tr>
     <th>TIP</th>
@@ -116,8 +119,10 @@ Imaju dosta novca na racunu, normalno kupuju, isto i na rate i odjednom,stedljiv
                  <th>          12353.26546</th>
   </tr>
  </table>
+ 
 ### Klaster 3-Sopingholicari
 Imaju najvise novca na racunu, cesto kupuju u velikim iznosima, isto i na rate i odjednom<br/>
+
 <table>
   <tr>
     <th>TIP</th>
@@ -169,7 +174,9 @@ Imaju najvise novca na racunu, cesto kupuju u velikim iznosima, isto i na rate i
                <th>              50721.48336</th>
   </tr>
  </table>
+ 
 ## Ukupni podaci:
+
 <table>
   <tr>
     <th>TIP</th>
