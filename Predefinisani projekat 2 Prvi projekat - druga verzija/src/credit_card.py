@@ -139,9 +139,7 @@ plt.show()
 # --- INICIJALIZACIJA I PRIMENA K-MEANS ALGORITMA --- #
 #brojKlastera = eval(raw_input('Unesite broj klastera:'))
 
-pca = PCA(n_components=2)
-#Vazno
-transformisaniPodaci = pca.fit_transform(copyPodaci)
+
 #---
 #skaliraniPodaci = pd.DataFrame(data=transformisaniPodaci, columns=['x_axis', 'y_axis'])
 print("Iscrtavanje klastera (obično traje 6 min) ...")
