@@ -14,12 +14,126 @@ PURCHASE i PURCHASE FREQUENCY pošto imamo posebne načine kupovine, MINIMUM_PAY
 Odredili smo da postoje tri grupe tj. tri klastera i oni su:<br />
 ### Klaster 1-Studenti
 Nemaju puno novca na racunu, normalno kupuju, duplo vise na rate nego odjednom,veoma rijetko uplacuju unaprijed<br/>
+<table>
+  <tr>
+    <th>TIP</th>
+  <th>BALANCE</th>
+    <th>ONEOFF_PURCHASES</th>
+    <th>INSTALLMENTS_PURCHASES</th>
+    <th>CASH_ADVANCE</th>
+    <th>ONEOFF_PURCHASES_FREQUENCY</th>
+    <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+    <th>CASH_ADVANCE_TRX</th>
+     <th>CREDIT_LIMIT</th>
+    <th>PAYMENTS</th>
+  </tr>
+   <tr>
+   <th>Srednja vrednost</th>
+     <th>860.219644</th>
+     <th>321.048980</th>
+     <th>297.835035</th>
+     <th>494.586902</th>
+     <th>0.153346</th>
+     <th>0.354902</th>
+     <th>2.262298</th>
+     <th>2632.523387</th>
+     <th>1008.260350</th>
+  </tr>
+   <tr>
+  <th>Minimum</th>
+     <th>0</th>
+     <th>0</th>
+     <th>0</th>
+     <th>0</th>
+     <th>0</th>
+     <th>0</th>
+     <th>0</th>
+     <th>50</th>
+     <th>0</th>
+  </tr>
+   <tr>
+     <th>Maksimum</th>
+ <th> 4972.108843</th>
+                     <th>8053.950000</th>
+               <th>5463.730000</th>
+                        <th> 7883.541720</th>
+             <th> 1.000000</th>
+       <th> 1.000000</th>
+                      <th>123.000000</th>
+                         <th>7000.000000</th>
+                          <th>14229.882480</th>
+  </tr>
+ </table>
 ### Klaster 2-Radna klasa
 Imaju dosta novca na racunu, normalno kupuju, isto i na rate i odjednom,stedljivi<br/>
+<table>
+  <tr>
+    <th>TIP</th>
+  <th>BALANCE</th>
+    <th>ONEOFF_PURCHASES</th>
+    <th>INSTALLMENTS_PURCHASES</th>
+    <th>CASH_ADVANCE</th>
+    <th>ONEOFF_PURCHASES_FREQUENCY</th>
+    <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+    <th>CASH_ADVANCE_TRX</th>
+     <th>CREDIT_LIMIT</th>
+    <th>PAYMENTS</th>
+  </tr>
+   <tr>
+   <th>Srednja vrednost</th>
+    <th> 3181.064725</th>
+                  <th>  961.908376</th>
+              <th> 578.423335</th>
+                     <th>  1841.554895</th>
+           <th> 0.314813</th>
+     <th> 0.381484</th>
+                       <th>5.172742</th>
+                     <th>   8872.859080</th>
+                       <th>    2575.054639</th>
+  </tr>
+   <tr>
+  <th>Minimum</th>
+    <th> 0.0</th>
+                    <th>  0.0</th>
+               <th>  0.0</th>
+                        <th>  0.0</th>
+           <th> 0.0</th>
+     <th>  0.0</th>
+                    <th>  0.0</th>
+                      <th> 3000.0</th>
+                            <th>   0.0</th>
+  </tr>
+   <tr>
+<th>Maksimum</th>
+  </tr>
+ </table>
 ### Klaster 3-Sopingholicari
 Imaju najvise novca na racunu, cesto kupuju u velikim iznosima, isto i na rate i odjednom<br/>
-
-Eksplorativna analiza podataka:<br/>
+<table>
+  <tr>
+    <th>TIP</th>
+  <th>BALANCE</th>
+    <th>ONEOFF_PURCHASES</th>
+    <th>INSTALLMENTS_PURCHASES</th>
+    <th>CASH_ADVANCE</th>
+    <th>ONEOFF_PURCHASES_FREQUENCY</th>
+    <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+    <th>CASH_ADVANCE_TRX</th>
+     <th>CREDIT_LIMIT</th>
+    <th>PAYMENTS</th>
+  </tr>
+   <tr>
+   <th>Srednja vrednost</th>
+     
+  </tr>
+   <tr>
+  <th>Minimum</th>
+     
+  </tr>
+   <tr>
+<th>Maksimum</th>
+  </tr>
+ </table>
 ## Ukupni podaci:
 <table>
   <tr>
