@@ -93,6 +93,7 @@ print(podaci.max(axis=0))
 print("---------------------------------------------------------------------------------")
 podaci.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
                  'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
+plt.xticks(rotation=90)
 plt.show()
 
 klaster1=podaci.loc[podaci['KLASTER']==0]
@@ -106,6 +107,7 @@ print(klaster1.max(axis=0))
 print("---------------------------------------------------------------------------------")
 klaster1.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
                  'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
+plt.xticks(rotation=90)
 plt.show()
 klaster2=podaci.loc[podaci['KLASTER']==1]
 print("KLASTER 2 - Radna klasa")
@@ -118,6 +120,7 @@ print(klaster2.max(axis=0))
 print("---------------------------------------------------------------------------------")
 klaster2.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
                  'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
+plt.xticks(rotation=90)
 plt.show()
 klaster3=podaci.loc[podaci['KLASTER']==2]
 print("KLASTER 3 - Sopingholicari")
@@ -130,6 +133,7 @@ print(klaster3.max(axis=0))
 print("---------------------------------------------------------------------------------")
 klaster3.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
                  'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
+plt.xticks(rotation=90)
 plt.show()
 
 # --- INICIJALIZACIJA I PRIMENA K-MEANS ALGORITMA --- #
