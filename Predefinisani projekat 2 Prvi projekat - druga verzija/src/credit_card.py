@@ -62,7 +62,7 @@ pca = PCA(n_components=2)
 transformisaniPodaci = pca.fit_transform(copyPodaci)
 print("Uspešno konvertovano!")
 
-plt.figure()
+plt.figure("Metoda lakta")
 sum_squared_errors = []
 print("Iscrtavanje metode lakta (obično traje 2 min) ...")
 for n_clusters in range(1, 10):
@@ -91,6 +91,7 @@ print("-------------------------------------------------------------------------
 print("UKUPNI PODACI-max vrednosti")
 print(podaci.max(axis=0))
 print("---------------------------------------------------------------------------------")
+plt.figure("UKUPNI PODACI")
 podaci.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
                  'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
 plt.xticks(rotation=90)
@@ -105,6 +106,7 @@ print(klaster1.min(axis=0))
 print("Maksmimum klastera")
 print(klaster1.max(axis=0))
 print("---------------------------------------------------------------------------------")
+plt.figure("KLASTER 1 - Studenti")
 klaster1.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
                  'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
 plt.xticks(rotation=90)
@@ -118,6 +120,7 @@ print(klaster2.min(axis=0))
 print("Maksmimum klastera")
 print(klaster2.max(axis=0))
 print("---------------------------------------------------------------------------------")
+plt.figure("KLASTER 2 - Radna klasa")
 klaster2.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
                  'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
 plt.xticks(rotation=90)
@@ -131,6 +134,7 @@ print(klaster3.min(axis=0))
 print("Maksmimum klastera")
 print(klaster3.max(axis=0))
 print("---------------------------------------------------------------------------------")
+plt.figure("KLASTER 3 - Sopingholicari")
 klaster3.boxplot(grid=True,column=['BALANCE', 'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE', 'ONEOFF_PURCHASES_FREQUENCY',
                  'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_TRX', 'CREDIT_LIMIT', 'PAYMENTS'])
 plt.xticks(rotation=90)
@@ -147,7 +151,7 @@ kmeans2 = KMeans2(n_clusters=brojKlastera, max_iter=100)
 kmeans2.fit(transformisaniPodaci, normalize=True)
 colors = {0: 'red', 1: 'green', 2:'blue'}
 markeri = {0: '*', 1:'+',2: 'X' }
-plt.figure()
+plt.figure("Klasteri")
 for idx, cluster in enumerate(kmeans2.clusters):
     for tacka in cluster.data:  # iscrtavanje tacaka
         plt.scatter(tacka[0], tacka[1], c=colors[idx])
